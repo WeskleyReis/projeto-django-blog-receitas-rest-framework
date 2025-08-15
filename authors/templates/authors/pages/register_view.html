@@ -1,11 +1,12 @@
-{% extends "global/base.html" %}
+{% extends 'global/base.html' %}
 
-{% block title %}Register | {% endblock  %}
+{% block title %}Register | {% endblock title %}
+
 {% block content %}
-	<div class="main-content center container">
-		<h2>Register</h2>
-	</div>
+  <div class="main-content center container">
+    <h2>Register</h2>
+  </div>
 
-	{% include 'global/partials/messages.html' %}
-	{% include 'global/partials/form.html' %}
-{% endblock  %}
+  {% include 'global/partials/messages.html' %}
+  {% include 'global/partials/form.html' %} 
+{% endblock content %}

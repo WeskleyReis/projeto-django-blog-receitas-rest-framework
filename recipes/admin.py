@@ -7,6 +7,7 @@ class CategoryAdmin(admin.ModelAdmin):
     search_fields = ('name',)
 
 
+@admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'created_at', 'is_published', 'author',)
     list_display_links = ('title', 'created_at',)
@@ -18,7 +19,7 @@ class RecipeAdmin(admin.ModelAdmin):
     prepopulated_fields = {
         'slug': ('title',)
     }
+    autocomplete_fields = 'tags',
 
 
 admin.site.register(Category, CategoryAdmin)
-admin.site.register(Recipe, RecipeAdmin)
