@@ -31,7 +31,7 @@ class RecipeManager(models.Manager):
                 F('author__last_name'), Value(' ('),
                 F('author__username'), Value(')'),
             )
-        ).order_by('-id')
+        ).order_by('-id').select_related('category', 'author').prefetch_related('tags')
 
 
 class Recipe(models.Model):
@@ -64,9 +64,7 @@ class Recipe(models.Model):
         if not self.slug:
             self.slug = slugify(self.title)
 
-        current_cover = self.cover.name
         saved = super().save(*args, **kwargs)
-        cover_changed = False
 
         if self.cover:
             try:

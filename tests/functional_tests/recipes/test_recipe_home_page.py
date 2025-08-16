@@ -8,13 +8,13 @@ from selenium.webdriver.common.keys import Keys
 
 @pytest.mark.functional_test
 class RecipeHomePageFunctionalTest(RecipeBaseFunctionalTest):
-    @patch('recipes.views.PER_PAGE', new=2)
+    @patch('recipes.views.site.PER_PAGE', new=2)
     def test_recipe_home_page_without_not_found_message(self):
         self.browser.get(self.live_server_url)
         body = self.browser.find_element(By.TAG_NAME, 'body')
         self.assertIn('No recipes found here 🥲', body.text)
     
-    @patch('recipes.views.PER_PAGE', new=2)
+    @patch('recipes.views.site.PER_PAGE', new=2)
     def test_recipe_search_input_can_find_correct_recipes(self):
         recipes = self.make_recipe_in_bath()
         title_needed = 'This is what I need'
@@ -43,7 +43,7 @@ class RecipeHomePageFunctionalTest(RecipeBaseFunctionalTest):
             main_content_list.text,
         )
 
-    @patch('recipes.views.PER_PAGE', new=2)
+    @patch('recipes.views.site.PER_PAGE', new=2)
     def test_recipe_home_page_pagination(self):
         self.make_recipe_in_bath()
 
