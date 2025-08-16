@@ -21,12 +21,12 @@ def recipe_api_list(request):
     elif request.method == 'POST':
         serializer = RecipeSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-            # serializer.saved()
+        serializer.save()
         return Response(
-            serializer.validated_data,
+            serializer.data,
             status=status.HTTP_201_CREATED
         )
-        # return Response(serializer.erros, status=status.HTTP_400_BAD_REQUEST)
+        
 
 @api_view()
 def recipe_api_detail(request, pk):

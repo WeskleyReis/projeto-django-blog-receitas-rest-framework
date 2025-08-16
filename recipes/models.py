@@ -1,3 +1,6 @@
+import os
+import string
+
 from django.contrib.auth.models import User
 from django.db import models
 from django.db.models import F, Value
@@ -9,6 +12,9 @@ from django.utils.translation import gettext as _
 from tag.models import Tag
 from django.forms import ValidationError
 from collections import defaultdict
+from random import SystemRandom
+
+
 
 
 class Category(models.Model):
@@ -62,7 +68,13 @@ class Recipe(models.Model):
     def save(self, *args, **kwargs):
         # Automatically generate slug if it doesn't exist
         if not self.slug:
-            self.slug = slugify(self.title)
+            rand_letters = ''.join(
+                SystemRandom().choices(
+                    string.ascii_letters + string.digits,
+                    k=5,
+                )
+            )
+            self.slug = slugify(f'{self.title}-{rand_letters}')
 
         saved = super().save(*args, **kwargs)
 
