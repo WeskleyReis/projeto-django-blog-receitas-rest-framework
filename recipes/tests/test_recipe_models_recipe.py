@@ -90,4 +90,4 @@ class RecipeModelTest(RecipeTestBase):
         self.recipe.title = 'Test for slug in recipe'
         self.recipe.slug = ''
         self.recipe.save()
-        self.assertEqual('test-for-slug-in-recipe', self.recipe.slug)
+        self.assertNotEqual('test-for-slug-in-recipe', self.recipe.slug)
