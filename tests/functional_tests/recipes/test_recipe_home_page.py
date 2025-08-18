@@ -37,6 +37,7 @@ class RecipeHomePageFunctionalTest(RecipeBaseFunctionalTest):
         search_input.send_keys(Keys.ENTER)
 
         # The user sees what they were looking for on the page
+        self.sleep(1)  # Wait for the page to load
         main_content_list = self.browser.find_element(By.CLASS_NAME, 'main-content-list')
         self.assertIn(
             title_needed,
